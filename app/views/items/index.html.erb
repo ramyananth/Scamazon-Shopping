@@ -1,0 +1,101 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Unique id</th>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Popularity</th>
+      <th>Quantity</th>
+      <th>Cost</th>
+      <th>Tax slab</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <%if current_admin %>
+        <tr>
+          <td><%= item.Unique_ID %></td>
+          <td><%= item.Brand %></td>
+          <td><%= item.Name %></td>
+          <td><%= item.Category %></td>
+          <td><%= item.Popularity %></td>
+          <td><%= item.Quantity %></td>
+          <td><%= item.Cost %></td>
+          <td><%= item.Tax_Slab %></td>
+          <td><%= link_to 'Show', item %></td>
+          <td><%= link_to 'Edit', edit_item_path(item) %></td>
+          <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Give Feedback', new_feedback_path(:item_id => item.id) %></td>
+        </tr>    
+      <% elsif item.Age_restricted_item? %>
+        <% if current_user && ((Time.zone.now - current_user.date_of_birth.to_time) / 1.year.seconds).floor > 18 %>
+            <tr>
+              <td><%= item.Unique_ID %></td>
+              <td><%= item.Brand %></td>
+              <td><%= item.Name %></td>
+              <td><%= item.Category %></td>
+              <td><%= item.Popularity %></td>
+              <td><%= item.Quantity %></td>
+              <td><%= item.Cost %></td>
+              <td><%= item.Tax_Slab %></td>
+              <td><%= link_to 'Show', item %></td>
+              <td><%= link_to 'Give Feedback', new_feedback_path(:item_id => item.id) %></td>
+              <% if item.Quantity == 0 %>
+                <td><%= link_to 'Subscribe', subscription_path(:item_id => item.id, :user_id => current_user.id) %></td>
+              <% end %>
+            </tr>
+            <% end %>
+        <% else %>
+          <tr>
+            <td><%= item.Unique_ID %></td>
+            <td><%= item.Brand %></td>
+            <td><%= item.Name %></td>
+            <td><%= item.Category %></td>
+            <td><%= item.Popularity %></td>
+            <td><%= item.Quantity %></td>
+            <td><%= item.Cost %></td>
+            <td><%= item.Tax_Slab %></td>
+            <td><%= link_to 'Show', item %></td>
+            <td><%= link_to 'Give Feedback', new_feedback_path(:item_id => item.id) %></td>
+            <% if current_user%> 
+              <% if item.Quantity == 0 %>
+                  <td><%= link_to 'Subscribe', subscription_path(:item_id => item.id, :user_id => current_user.id) %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        
+      <% end %>
+    <% end %>
+  </tbody>
+</table> 
+<strong> <%= link_to "View feedbacks", feedbacks_path %> </strong>
+<strong> <%= link_to 'All Items', items_path %> </strong>
+
+<h2>Filter Options</h2>
+  <h3>Category</h3>
+    <%= link_to "Apparels", :category => "Apparels" %> <br>
+    <%= link_to "Computers", :category => "Computers" %> <br>
+    <%= link_to "Electronics", :category => "Electronics" %> <br>
+  <h3>Brand</h3>
+    <%= link_to "Champion", :brand => "Champion" %> <br>
+    <%= link_to "Lenovo", :brand => "Lenovo" %> <br>
+    <%= link_to "TC-Helicon", :brand => "TC-Helicon" %> <br>
+    <%= link_to "Tiscon", :brand => "Tiscon" %> <br> <br>
+    <%= link_to "Other", :brand => "Other" %> <br> <br>
+  <h3>Availability</h3>
+    <%= link_to "Available", :availability => true %> <br>
+
+<h2>Sort Options</h2>
+    <%= link_to "Popularity - Higher to Lower", :sort1 => "Popularity" %> <br>
+    <%= link_to "Popularity - Lower to Higher", :sort2 => "Popularity" %> <br>
+    <%= link_to "Cost - Higher to Lower", :sort1 => "Cost" %> <br> 
+    <%= link_to "Cost - Lower to Higher", :sort2 => "Cost" %> <br> <br>
+
+<%= link_to 'Back', categories_path %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Feedbacks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Item</th>
+      <th>Comment</th>
+      <th>Rating</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feedbacks.each do |feedback| %>
+      <tr>
+        <td><%= feedback.name %></td>
+        <td><%= Item.find(feedback.item_id).Name %></td>
+        <td><%= feedback.comment %></td>
+        <td><%= feedback.rating %></td>
+        <td><%= link_to 'Show', feedback %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back", items_path %>
+<br>

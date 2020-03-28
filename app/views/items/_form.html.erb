@@ -1,0 +1,68 @@
+<%= form_with(model: item, local: true) do |form| %>	
+    <% if item.errors.any? %>	
+      <div id="error_explanation">	
+        <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>	
+  
+        <ul>	
+          <% item.errors.full_messages.each do |message| %>	
+            <li><%= message %></li>	
+          <% end %>	
+        </ul>	
+      </div>	
+    <% end %>	
+  
+    <div class="field">	
+      <%= form.label :Unique_ID %>	
+      <%= form.text_field :Unique_ID %>	
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Brand %>	
+      <%= form.select :Brand, ['Champiom', 'Lenovo','TC-Helicon','Tiscon','Other']%>		
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Name %>	
+      <%= form.text_field :Name %>	
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Category %>	
+      <%= form.select :Category, ['Apparels', 'Computers','Electronics']%>	
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Restricted_item %>	
+      <%= form.check_box :Restricted_item %>	
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Age_restricted_item %>	
+      <%= form.check_box :Age_restricted_item %>	
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Quantity %>	
+      <%= form.number_field :Quantity %>	
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Cost %>	
+      <%= form.text_field :Cost %>	
+    </div>	
+  
+    <div class="field">	
+      <%= form.label :Tax_Slab %>	
+      <%= form.text_field :Tax_Slab %>	
+    </div>	
+
+    <div class="field">
+      <%= form.label :Upload_pictures %>
+      <%= form.file_field :pictures, multiple:true %>
+    </div>
+
+  
+    <div class="actions">	
+      <%= form.submit %>	
+    </div>	
+  <% end %>

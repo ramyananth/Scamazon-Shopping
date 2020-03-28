@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Tax_Slab: 1.5
+
+two:
+  Tax_Slab: 1.5

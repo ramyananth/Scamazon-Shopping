@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<div style="width:200px; height:auto">
+  <%(0...@item.pictures.count).each do |image| %>
+    <%= image_tag(@item.pictures[image], style: 'width:100%') %>
+  <%end %>
+</div>
+</p>
+
+<p>
+  <strong>Unique id:</strong>
+  <%= @item.Unique_ID %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @item.Brand %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.Name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @item.Category %>
+</p>
+
+<p>
+  <strong>Restricted item:</strong>
+  <%= @item.Restricted_item %>
+</p>
+
+<p>
+  <strong>Age restricted item:</strong>
+  <%= @item.Age_restricted_item %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @item.Availability %>
+</p>
+
+<p>
+  <strong>Popularity:</strong>
+  <%= @item.Popularity %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @item.Quantity %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @item.Cost %>
+</p>
+
+<p>
+  <strong>Tax slab:</strong>
+  <%= @item.Tax_Slab %>
+</p>
+
+<%= link_to 'Back', items_path %>
+<%= link_to 'Add to cart', add_to_carts_path(@item), method: :PUT %>
+<%= link_to 'Add to wishlist', wishlists_path %>
+<%= link_to 'Buy now', orders_path %> -->

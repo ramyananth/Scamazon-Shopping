@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Wishlist Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Unique id</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Cost</th>
+      <th>Tax slab</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+  <% @wishlist_items_with_qty.each do |array| %>
+    <% item = array[0] %>
+    <% qty = array[1] %>
+    <tr>
+      <td><%= item.Unique_ID %></td>
+      <td><%= item.Name %></td>
+      <td><%= item.Category %></td>
+      <td><%= qty %></td>
+      <td><%= item.Cost %></td>
+      <td><%= item.Tax_Slab %></td>
+      <td>
+      <%= link_to 'add more', add_to_wishlists_path(item),method: :PUT, class: "btn" %>
+      <%= link_to 'remove one ', remove_one_wishlists_path(item), method: :PUT, class: "btn" %>
+      <%= link_to 'Remove from cart', remove_from_wishlists_path(item),method: :PUT, class: "btn" %>
+      </td>
+      </tr>
+  <% end %>
+  <tr>
+  <td>
+  <h5> Total </h5>
+  </td>
+  <td>
+  <h5> <%= @wishlist_total %> </h5>
+  </td>
+  </tr>
+
+</tbody>
+</table>

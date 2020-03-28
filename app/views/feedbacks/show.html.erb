@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @feedback.name %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= Item.find(@feedback.item_id).Name %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @feedback.comment %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @feedback.rating %>
+</p>
+
+<%= link_to 'Back', feedbacks_path %>
