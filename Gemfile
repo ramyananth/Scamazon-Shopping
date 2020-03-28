@@ -67,7 +67,7 @@ gem 'devise'
 gem 'carrierwave', '~> 2.0'
 
 # Bootstrap 4 to a Rails 5 app
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 
 # Redis for cart operations 
 gem 'redis', '~> 4.1.3'
